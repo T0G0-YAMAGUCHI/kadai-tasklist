@@ -8,8 +8,11 @@ class TasksController < ApplicationController
   end
   
   def new
+    @task = Task.new
+  end
+  
+  def create
     @task = Task.new(task_params)
-    
     if @task.save
       flash[:success] = "タスクが正常に追加されました"
      redirect_to @task
@@ -17,10 +20,6 @@ class TasksController < ApplicationController
       flash[:dangerous]="タスクの追加に失敗しました"
       render :new
     end
-  end
-  
-  def create
-    @task = Task.new
   end
   
   def edit
@@ -40,6 +39,11 @@ class TasksController < ApplicationController
   end
   
   def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+    
+    flash[:success]= "タスクが削除されました"
+    redirect_to tasks_url
   end
   
   private
