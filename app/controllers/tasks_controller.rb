@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :update, :destroy, :edit]
   
   def index
-    @tasks = Task.all
+    @tasks = Task.all.page(params[:page]).per(10)
   end
   
   def show
@@ -19,7 +19,7 @@ class TasksController < ApplicationController
       flash[:success] = "タスクが正常に追加されました"
      redirect_to @task
     else
-      flash[:dangerous]="タスクの追加に失敗しました"
+      flash[:danger]="タスクの追加に失敗しました"
       render :new
     end
   end
