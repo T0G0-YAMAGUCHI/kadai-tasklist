@@ -1,5 +1,10 @@
-<div class="center jumbotron">
-  <div class="text-center">
-    <h1>Welcome to the Tasklist</h1>
+<% if logged_in? %>
+  <p>ログイン完了ユーザ:<%= current_user.name %></p>
+<% else %>
+  <div class="center jumbotron">
+    <div class="text-center">
+      <h1>Welcome to the Tasklist</h1>
+      <%= link_to "Signup now!" , signup_path  ,class:"btn btn-primay"%>
+    </div>
   </div>
-</div>
+<% end %>
