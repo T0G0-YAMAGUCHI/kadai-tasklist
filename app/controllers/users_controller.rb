@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in , only:[:index,:show]
+  before_action :require_user_logged_in , only:[:index,:show , ]
   
   def index
     @users=User.all.page(params[:page])
@@ -14,9 +14,7 @@ class UsersController < ApplicationController
     @user=User.new
   end
 
-  def edit
-    @task=Task.find(params[:id])
-  end
+
     
   def create
     @user=User.new(user_params)
