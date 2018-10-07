@@ -1,18 +1,3 @@
 <h1>id :<%= @task.id %>の編集ページ</h1>
-<% if logged_in? %>
-  <%= form_for(@task) do |f| %>
-    <div class="form-group">
-      <%= f.label :status,"Status" %>
-      <%= f.text_field :status , class:"form-control" %>
-    </div>
-  
-    <div class="form-group">
-      <%= f.label :content , "Content" %>
-      <%= f.text_area :content , class:"form-control" %>
-    </div>
-  
-    <%= f.submit "更新" , class:"btn btn -primary" %>
-  <% end %>
-<% else %>
-  <%= ridirect_to root_url %>
-<% end %>
+
+<%= render 'form', task: @task %>

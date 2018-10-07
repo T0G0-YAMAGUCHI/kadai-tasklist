@@ -2,10 +2,6 @@ class TasksController < ApplicationController
   before_action :require_user_logged_in
   before_action :correct_user , only: [:destroy , :edit]
   before_action :set_task, only: [:show, :update, :destroy, :edit]
-  
-  
-
-  
 
   def new
     @task = Task.new
@@ -47,8 +43,7 @@ class TasksController < ApplicationController
   end
   
   private
-  
-  
+
   def set_task
     @task = Task.find(params[:id])
   end

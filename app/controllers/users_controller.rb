@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in , only:[:index,:show , ]
+  before_action :require_user_logged_in , only:[:index, :show]
+  before_action :correct_user, only: :show
   
   def index
     @users=User.all.page(params[:page])
@@ -7,7 +8,7 @@ class UsersController < ApplicationController
 
   def show
     @user=User.find(params[:id])
-    @tasks = @user.tasks.order("created_at DESC").page(params[:id])
+    @tasks = @user.tasks.order("created_at DESC").page(params[:page])
   end
 
   def new
@@ -32,5 +33,10 @@ class UsersController < ApplicationController
   
   def user_params 
     params.require(:user).permit(:name,:email,:password,:password_confirmation)
+  end
+  
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to root_url if current_user != @user
   end
 end
