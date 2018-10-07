@@ -14,6 +14,10 @@ class UsersController < ApplicationController
     @user=User.new
   end
 
+  def edit
+    @task=Task.find(params[:id])
+  end
+    
   def create
     @user=User.new(user_params)
     
